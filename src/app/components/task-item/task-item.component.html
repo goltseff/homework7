@@ -1,0 +1,14 @@
+<div style="width:200px;height:200px; padding:5px; margin:10px; float:left; border:2px solid #000;">
+  ID: {{ todoitem.id }}
+  <br>Date: {{ todoitem.id | date : 'dd.MM.yyyy HH:mm' }}
+  <br>Name: {{ todoitem.name }}
+  <br><span class="line-breaker">Dscr: {{ todoitem.desc }}</span>
+  <br><span class="line-breaker">Tags:</span>
+  <ng-container *ngFor="let tag of todoitem.tags">
+      <br>{{tag}}
+  </ng-container>
+  <br>Status: {{ statuses_dictionary[todoitem.status]}}
+  <br>  <span *ngIf="(hidedelete == 0)">[<a href="javascript:void(0)" (click)="delTodoClk(todoitem.id)">удалить</a>]  </span>
+  [<a [routerLink]="['/list',todoitem.id]">ред-ть</a>]
+  
+  </div>

@@ -1,0 +1,44 @@
+<input type=button (click)="addTodo()" value="новая задачка">
+<br>
+<br>
+<form [formGroup]="filterForm" (ngSubmit)="todosFilter()">
+    <table border=1 width=250 style="border-collapse:collapse">
+        <tr>
+            <td>ID</td>
+            <td>
+                <input formControlName="id" name="id" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input formControlName="name" name="name" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>
+                <select name=status formControlName="status">
+                    <option *ngFor="let status of statuses_dictionary;  let i = index" value="{{i}}">{{status}}</option>        
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>tags</td>
+            <td>
+                <app-tags-control name="tags" formControlName="tags"></app-tags-control>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Фильтровать">
+                <input type="button" value="Очистить" (click)="clear_filter()">
+             </td>
+        </tr>
+
+    </table>
+</form>
+<h3>Список задачек:</h3>
+<div>
+    <app-task-item *ngFor="let todoitem of items" [todoitem]="todoitem" [hidedelete]="0" (delTodo)="delTodo($event)" (editTodo)="editTodo($event)"></app-task-item>
+</div>

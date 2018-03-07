@@ -1,0 +1,14 @@
+<!-- <div class="country-picker">
+  <input class="country-picker__input" type="text" [ngModel]="inputValue" (ngModelChange)="newTerm($event)">
+  <div class="country-picker__popup" *ngIf="!hideOptions">
+    <div class="country-picker__option" *ngFor="let option of options" (click)="selectOption(option)">{{ option }}</div>
+  </div>
+</div> -->
+
+<div>
+<input type=text name=tag_name #tag_name style="width:100px">&nbsp;<input type=button value="add_tag" (click)="add_tag(tag_name)">
+<br>теги:
+<ul>
+  <li *ngFor="let tag of tags">{{tag}} - [ <a href="javascript:void(0)" (click)="del_tag(tag)">X</a> ]
+</ul>
+</div>  

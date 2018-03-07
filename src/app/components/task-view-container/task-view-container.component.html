@@ -1,0 +1,47 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit($event)" novalidate>
+
+
+<table border=1 width=400 style="border-collapse: collapse;">
+  <tr>
+    <td colspan=2 align=center>{{ ((todoitem.id === 0)?'Создать новую задачу':'Редактировать задачу: '+todoitem.id )}}</td>
+  </tr>
+  <tr>
+      <td>ID</td>
+      <td>{{ ((todoitem.id===0)?'':todoitem.id) }}</td>
+  </tr>
+  <tr>
+      <td>Заголовок</td>
+      <td><input type=text name=name formControlName="name"></td>
+  </tr>
+  <tr>
+    <td>Содержание</td>
+    <td><textarea name="dscr" style="width:95%;height:200px;"  formControlName="dscr"></textarea></td>
+ </tr>
+ <tr>
+  <td>Тэги</td>
+  <td>
+    <app-tags-control name="tags" formControlName="tags"></app-tags-control>
+  </td>
+</tr>
+<tr>
+  <td>Статус</td>
+  <td>
+    <select name=status formControlName="status">
+        <option *ngFor="let status of statuses_dictionary;  let i = index" value="{{i}}">{{status}}</option>        
+    </select>
+  </td>
+</tr>
+<tr>
+<td colspan=2 align=center>
+  <input type="submit" value="сохранить">
+</td>
+</tr>   
+</table>
+</form>
+<h3>Другие задачки:</h3>
+<app-task-item 
+*ngFor="let todoitem of items" 
+[todoitem] = "todoitem" 
+[hidedelete] = "1"
+(delTodo)="delTodo($event)" 
+(editTodo)="editTodo($event)"></app-task-item>
